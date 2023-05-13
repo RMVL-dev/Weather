@@ -16,7 +16,7 @@ class DefaultAppContainer: AppContainer {
     private var town = "London"
 
     private val BASE_URL =
-        "https://api.weatherapi.com/v1/current.json?key=${key}&q=${town}&aqi=no"
+        "https://api.weatherapi.com/v1/"
 
     private val retrofit: Retrofit = Retrofit.Builder()
         .baseUrl(BASE_URL)

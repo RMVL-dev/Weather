@@ -11,6 +11,14 @@ data class Location(
     val townRegion: String,
     @SerialName("country")
     val country: String,
+    @SerialName("lat")
+    val lat: Float,
+    @SerialName("lon")
+    val lon: Float,
+    @SerialName("tz_id")
+    val tzId: String,
+    @SerialName("localtime_epoch")
+    val localTimeEpoch: Int,
     @SerialName("localtime")
     val localTime: String
 )
