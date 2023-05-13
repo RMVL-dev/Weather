@@ -1,12 +1,12 @@
 package com.example.weather.ui.screens
 
-import android.location.Location
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -46,7 +46,10 @@ fun Receipt(
 fun TextForAllScreen(
     weather: WeatherModel
 ){
-    Column(modifier = Modifier.fillMaxSize().padding(16.dp)) {
+    Column(modifier = Modifier
+        .fillMaxSize()
+        .padding(16.dp)) {
+        Text(text = weather.location.townName)
         Text(text = weather.location.country.toString())
         Text(text = weather.location.localTime.toString())
         Text(text = weather.current.windDirection)
@@ -58,4 +61,14 @@ fun TextForAllScreen(
         Text(text = weather.current.precipIn.toString())
     }
 
+}
+
+@Composable
+fun Error(){
+    Box(modifier = Modifier
+        .fillMaxSize(),
+        contentAlignment = Alignment.Center,
+    ) {
+        Text(text = "Error")
+    }
 }

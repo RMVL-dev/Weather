@@ -7,13 +7,10 @@ import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFact
 import kotlinx.serialization.json.Json
 import okhttp3.MediaType.Companion.toMediaType
 import retrofit2.Retrofit
-import retrofit2.create
+
 
 class DefaultAppContainer: AppContainer {
 
-    private val key = "208b01204b0140c6bd595416231105"
-
-    private var town = "London"
 
     private val BASE_URL =
         "https://api.weatherapi.com/v1/"

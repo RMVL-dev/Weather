@@ -1,6 +1,5 @@
 package com.example.weather.viewmodel
 
-import android.location.Location
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
@@ -14,8 +13,6 @@ import com.example.weather.WeatherApplication
 import com.example.weather.repository.interfaces.WeatherRepository
 import com.example.weather.viewmodel.interfaces.WeatherState
 import kotlinx.coroutines.launch
-import kotlinx.serialization.decodeFromString
-import kotlinx.serialization.json.Json
 import retrofit2.HttpException
 import java.io.IOException
 
@@ -31,10 +28,6 @@ class WeatherViewModel(private val weatherRepository:WeatherRepository):ViewMode
         viewModelScope.launch {
             weatherUiState = WeatherState.Loading
             weatherUiState = try{
-                //var location: Location
-                //val string = weatherRepository.getWeatherData()
-                //val obj = Json.decodeFromString<Location>(string = string.location)
-                //location = obj
                 WeatherState.Success(
                     weatherRepository.getWeatherData()
                 )
