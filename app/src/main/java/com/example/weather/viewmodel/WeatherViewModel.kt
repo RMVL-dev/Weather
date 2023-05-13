@@ -36,7 +36,7 @@ class WeatherViewModel(private val weatherRepository:WeatherRepository):ViewMode
                 //val obj = Json.decodeFromString<Location>(string = string.location)
                 //location = obj
                 WeatherState.Success(
-                    weatherRepository.getWeatherData().location
+                    weatherRepository.getWeatherData()
                 )
             }catch (e:IOException) {
                 WeatherState.Error

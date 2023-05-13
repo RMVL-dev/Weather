@@ -9,6 +9,6 @@ import kotlinx.serialization.json.Json
 data class WeatherModel(
     @SerialName("location")
     val location: Location,
-    //@SerialName("current")
-    //val current: String
+    @SerialName("current")
+    val current: Current
 )
