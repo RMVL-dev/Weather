@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.Text
+import androidx.compose.material3.Button
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -14,6 +15,7 @@ import com.example.weather.data.WeatherModel
 import com.example.weather.viewmodel.WeatherViewModel
 import com.example.weather.viewmodel.interfaces.WeatherState
 
+
 @Composable
 fun HomeScreen(){
 
@@ -21,17 +23,26 @@ fun HomeScreen(){
         factory = WeatherViewModel.Factory
     )
 
-    Receipt(uiState = weatherViewModel.weatherUiState)
+    Receipt(
+        uiState = weatherViewModel.weatherUiState,
+        weatherViewModel = weatherViewModel
+    )
 }
 
 
 @Composable
 fun Receipt(
-    uiState: WeatherState
+    uiState: WeatherState,
+    weatherViewModel: WeatherViewModel
 ){
     when(uiState){
         is WeatherState.Success -> {
-            TextForAllScreen(weather = uiState.weather)
+            TextForAllScreen(
+                weather = uiState.weather,
+                onClick = {
+                        weatherViewModel.getWeatherData("Moscow")
+                }
+            )
         }
         is WeatherState.Error -> {
 
@@ -44,7 +55,8 @@ fun Receipt(
 
 @Composable
 fun TextForAllScreen(
-    weather: WeatherModel
+    weather: WeatherModel,
+    onClick: ()-> Unit
 ){
     Column(modifier = Modifier
         .fillMaxSize()
@@ -59,7 +71,13 @@ fun TextForAllScreen(
         Text(text = weather.current.cloud.toString())
         Text(text = weather.current.gustKph.toString())
         Text(text = weather.current.precipIn.toString())
+        Button(
+            onClick = onClick
+        ) {
+            Text(text = "Change to Paris")
+        }
     }
+
 
 }
 

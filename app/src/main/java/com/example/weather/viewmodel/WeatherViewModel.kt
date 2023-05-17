@@ -22,14 +22,14 @@ class WeatherViewModel(private val weatherRepository:WeatherRepository):ViewMode
         private set
 
     init {
-        getWeatherData()
+        getWeatherData("Saint-Petersburg")
     }
-    fun getWeatherData(){
+    fun getWeatherData(town:String){
         viewModelScope.launch {
             weatherUiState = WeatherState.Loading
             weatherUiState = try{
                 WeatherState.Success(
-                    weatherRepository.getWeatherData()
+                    weatherRepository.getWeatherData(town = town)
                 )
             }catch (e:IOException) {
                 WeatherState.Error
